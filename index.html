@@ -1,1 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal iaMidia.top</title>
+    <style>
+        /* CSS EMBUTIDO 
+           Estilo visual do Menu Principal
+        */
+        :root {
+            --cor-fundo: #1a1a2e;
+            --cor-destaque: #e94560;
+            --cor-texto: #ffffff;
+            --cor-botao-lista: #4ecca3; /* Verde Água */
+            --cor-botao-pingo: #ffbd69; /* Laranja Suave */
+            --cor-botao-filme: #e94560; /* Vermelho/Rosa */
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        p.subtitulo {
+            color: #a0a0a0;
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+        }
+
+        /* Container dos Botões */
+        .menu-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        /* Estilo dos Links/Botões */
+        .app-link {
+            text-decoration: none;
+            color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animação ao passar o mouse ou tocar */
+        .app-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.5);
+        }
+
+        .app-link:active {
+            transform: scale(0.98);
+        }
+
+        /* Cores Específicas de cada App */
+        .btn-lista {
+            background: linear-gradient(135deg, var(--cor-botao-lista), #2d8a6e);
+        }
+
+        .btn-pingo {
+            background: linear-gradient(135deg, var(--cor-botao-pingo), #d68930);
+        }
+
+        .btn-filme {
+            background: linear-gradient(135deg, var(--cor-botao-filme), #a62337);
+        }
+
+        /* Ícones simples (emojis) */
+        .icone {
+            margin-right: 15px;
+            font-size: 1.8rem;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* Área do Alerta Personalizado (Balão)
+        */
+        #custom-alert {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            z-index: 1000;
+            animation: slideDown 0.5s ease-out;
+            font-weight: bold;
+            border: 2px solid var(--cor-destaque);
+        }
+
+        @keyframes slideDown {
+            from { top: -100px; opacity: 0; }
+            to { top: 20px; opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>iaMidia.top</h1>
+    <p class="subtitulo">Selecione o Aplicativo:</p>
+
+    <div class="menu-container">
+        <a href="lista-de-compras/" class="app-link btn-lista" onclick="mostrarCarregando('Abrindo Lista de Compras...')">
+            <span class="icone">🛒</span> Lista de Compras
+        </a>
+
+        <a href="pingodoce/" class="app-link btn-pingo" onclick="mostrarCarregando('Indo para o Pingo Doce...')">
+            <span class="icone">💧</span> Pingo Doce
+        </a>
+
+        <a href="filmoteca/" class="app-link btn-filme" onclick="mostrarCarregando('Acessando Filmoteca...')">
+            <span class="icone">🎬</span> Filmoteca
+        </a>
+    </div>
+
+    <footer>
+        &copy; 2026 iaMidia - Todos os direitos reservados
+    </footer>
+
+    <div id="custom-alert"></div>
+
+    <script>
+        /* JAVASCRIPT EMBUTIDO 
+           Lógica simples para feedback visual
+        */
+
+        // ---------------------------------------------------------
+        // Linha 128: Função para mostrar o alerta personalizado (substitui o alert padrão)
+        // ---------------------------------------------------------
+        function showAlert(mensagem) {
+            const alertBox = document.getElementById('custom-alert');
+            alertBox.innerText = mensagem;
+            alertBox.style.display = 'block';
+
+            // Esconde automaticamente após 3 segundos
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 3000);
+        }
+
+        // ---------------------------------------------------------
+        // Linha 140: Função para dar um feedback visual antes de mudar de página
+        // ---------------------------------------------------------
+        function mostrarCarregando(texto) {
+            // Apenas mostra uma mensagem bonitinha enquanto o navegador carrega a nova página
+            showAlert("🚀 " + texto);
+            // O link href no HTML fará o redirecionamento naturalmente
+        }
+
+        // Boas-vindas (Opcional)
+        window.onload = function() {
+            console.log("Portal carregado com sucesso!");
+            // Se quiser uma mensagem de boas-vindas, descomente a linha abaixo:
+            // showAlert("Bem-vindo ao iaMidia!");
+        };
+
+    </script>
+</body>
+</html>
